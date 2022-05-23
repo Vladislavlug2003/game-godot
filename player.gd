@@ -6,10 +6,17 @@ const J_SPEED = 10
 var vel = Vector3()
 var rot_x = 0
 var rot_y = 0
+var action_object = null
+func action():
+	if action_object:
+		if action_object.name =='door':
+			action_object.open()
+			
+			
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _physic_process(delta):
+func _physics_process(delta):
 	var dir = Vector3()
 	
 	if Input.is_action_just_pressed('ui_cancel'):
@@ -52,6 +59,11 @@ func _input(e):
 				
 		transform.basis = Basis(Vector3(0,1,0),rot_y)
 		$camera.transform.basis = Basis(Vector3(1,0,0),rot_x)
+		
+		
+	if e is InputEventMouse:
+		if e.is_pressed():
+			action()
 		
 				
 
