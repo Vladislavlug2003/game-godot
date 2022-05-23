@@ -31,21 +31,21 @@ func _physics_process(delta):
 	if Input.as_action_pressed('ui_up'):
 		dir.z = -1	
 		
-		if dir:
-			dir *= SPEED * delta
-			dir = dir.rotated(Vector3(0,1,0),rotation.y)	
+	if dir:
+		dir *= SPEED * delta
+		dir = dir.rotated(Vector3(0,1,0),rotation.y)	
 			
-			vel.x = dir.x
-			vel.z = dir.z
+		vel.x = dir.x
+		vel.z = dir.z
 			
-			if Input.is_action_just_pressed("ui_select"):
-				if is_on_floor():
+	if Input.is_action_just_pressed("ui_select"):
+		if is_on_floor():
 					
-					vel.y = J_SPEED
+			vel.y = J_SPEED
 			
-			vel.y  += GR * delta
+	vel.y  += GR * delta
 			
-			vel = move_and_slide(vel,Vector3(0,1,0))
+	vel = move_and_slide(vel,Vector3(0,1,0))
 			
 			
 			
